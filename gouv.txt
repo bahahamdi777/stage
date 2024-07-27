@@ -1,0 +1,123 @@
+{
+  "gouvernorats": [
+    {
+      "gouvernorat": "Tunis",
+      "delegations": [
+        "Bab Bhar",
+        "Bab Souika",
+        "Cité El Khadra",
+        "Djebel Jelloud",
+        "El Kabaria",
+        "El Menzah",
+        "El Omrane",
+        "El Omrane Supérieur",
+        "El Ouardia",
+        "Ettahrir",
+        "Ezzouhour",
+        "Hrairia",
+        "La Goulette",
+        "La Marsa",
+        "Le Bardo",
+        "Le Kram",
+        "Médina",
+        "Séjoumi",
+        "Sidi El Béchir",
+        "Sidi Hassine"
+      ]
+    },
+    {
+      "gouvernorat": "Ariana",
+      "delegations": [
+        "Ariana Ville",
+        "Ettadhamen",
+        "Kalaat El Andalous",
+        "Mnihla",
+        "Raoued",
+        "Sidi Thabet",
+        "Soukra"
+      ]
+    },
+    {
+      "gouvernorat": "Ben Arous",
+      "delegations": [
+        "Ben Arous",
+        "Boumhel",
+        "El Mourouj",
+        "Ezzahra",
+        "Fouchana",
+        "Hammam Chott",
+        "Hammam Lif",
+        "M'Hamdia",
+        "Médina Jedida",
+        "Mégrine",
+        "Mohamedia",
+        "Radès"
+      ]
+    },
+    {
+      "gouvernorat": "Manouba",
+      "delegations": [
+        "Borj El Amri",
+        "Douar Hicher",
+        "El Battan",
+        "Jedaida",
+        "Manouba",
+        "Mornaguia",
+        "Oued Ellil",
+        "Tebourba"
+      ]
+    },
+    {
+      "gouvernorat": "Nabeul",
+      "delegations": [
+        "Beni Khalled",
+        "Beni Khiar",
+        "Bou Argoub",
+        "Dar Chaabane",
+        "El Haouaria",
+        "El Mida",
+        "Grombalia",
+        "Hammam Ghezaz",
+        "Hammamet",
+        "Kelibia",
+        "Korba",
+        "Menzel Bouzelfa",
+        "Menzel Temime",
+        "Nabeul",
+        "Soliman",
+        "Takelsa"
+      ]
+    },
+    {
+      "gouvernorat": "Zaghouan",
+      "delegations": [
+        "Bir Mcherga",
+        "El Fahs",
+        "Nadhour",
+        "Saouaf",
+        "Zriba",
+        "Zaghouan"
+      ]
+    },
+    {
+      "gouvernorat": "Bizerte",
+      "delegations": [
+        "Bizerte Nord",
+        "Bizerte Sud",
+        "Djoumime",
+        "El Alia",
+        "Ghar El Melh",
+        "Ghezala",
+        "Joumine",
+        "Mateur",
+        "Menzel Bourguiba",
+        "Menzel Jemil",
+        "Ras Jebel",
+        "Sejenane",
+        "Tinja",
+        "Utique",
+        "Zarzouna"
+      ]
+    },
+    {
+      "gouvernorat": "Béja

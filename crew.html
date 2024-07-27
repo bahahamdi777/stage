@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Dashboard</title>
+    <style>
+         table {
+             width: 100%;
+             border-collapse: collapse;
+         }
+         table, th, td {
+             border: 1px solid black;
+         }
+         th, td {
+             padding: 8px;
+             text-align: left;
+         }
+         th {
+             background-color: #f2f2f2;
+         }
+     </style>
+     <script>
+         async function fetchData() {
+             try {
+                 const response = await fetch('crew.php');
+                 const data = await response.json();
+ 
+                 if (data.error) {
+                     document.getElementById('error').innerText = data.error;
+                     return;
+                 }
+ 
+                 let userTableContent = '';
+                 data.users.forEach(user => {
+                     userTableContent += `
+                          <tr>
+                             <td>${user.noUtilisateur}</td>
+                             <td>${user.username}</td>
+                             <td>${user.code}</td>
+                             <td>${user.password}</td>
+                             <td>${user.role}</td>
+                             <td>${user.gsm}</td>
+                             <td>${user.email}</td>
+                             <td>
+                                <button type="button" class="btn btn-success" onclick="deleteUser(${user.noUtilisateur})">Supprimer</button>
+                                <a href="edit.php?noUtilisateur=${user.noUtilisateur}" class="btn btn-danger"> modifier</a>
+
+                             </td>
+                          </tr>
+                     `;
+                 });
+                 document.getElementById('user-table-body').innerHTML = userTableContent;
+ 
+                 let requestTableContent = '';
+                 data.requests.forEach(request => {
+                     requestTableContent += `
+                          <tr>
+                             <td>${request.noUtilisateur}</td>
+                             <td>${request.username}</td>
+                            <td>${request.code}</td>
+                             <td>${request.password}</td>
+                             <td>${request.gsm}</td>
+                             <td>${request.email}</td>
+                             <td>
+                                <button type="button" class="btn btn-success" onclick="acceptRequest(${request.noUtilisateur})">Accepter</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteRequest(${request.noUtilisateur})">Supprimer</button>
+                             </td>
+                          </tr>
+                     `;
+                 });
+                 document.getElementById('request-table-body').innerHTML = requestTableContent;
+             } catch (error) {
+                 document.getElementById('error').innerText = 'Erreur lors de la récupération des données.';
+             }
+         }
+ 
+
+
+
+
+         async function deleteUser(noUtilisateur) {
+             try {
+                 const response = await fetch('delete.php', {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/x-www-form-urlencoded',
+                     },
+                     body: `noUtilisateur=${noUtilisateur}`,
+                 });
+                 const result = await response.json();
+ 
+                 if (result.success) {
+                     fetchData();
+                 } else {
+                     document.getElementById('error').innerText = result.error;
+                 }
+             } catch (error) {
+                 document.getElementById('error').innerText = 'Erreur lors de la suppression de la demande.';
+             }
+         }
+ 
+         async function acceptRequest(noUtilisateur) {
+             try {
+                 const response = await fetch('accept_request.php', {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/x-www-form-urlencoded',
+                     },
+                     body: `noUtilisateur=${noUtilisateur}`,
+                 });
+                 const result = await response.json();
+ 
+                 if (result.success) {
+                     fetchData();
+                 } else {
+                     document.getElementById('error').innerText = result.error;
+                 }
+             } catch (error) {
+                 document.getElementById('error').innerText = 'Erreur lors de l\'acceptation de la demande.';
+             }
+         }
+
+
+         async function deleteRequest(noUtilisateur) {
+             try {
+                 const response = await fetch('delete_request.php', {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/x-www-form-urlencoded',
+                     },
+                     body: `noUtilisateur=${noUtilisateur}`,
+                 });
+                 const result = await response.json();
+ 
+                 if (result.success) {
+                     fetchData();
+                 } else {
+                     document.getElementById('error').innerText = result.error;
+                 }
+             } catch (error) {
+                 document.getElementById('error').innerText = 'Erreur lors de la suppression de la demande.';
+             }
+         }
+
+
+
+ 
+         window.onload = fetchData;
+     </script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <h3>Welcome to your dashboard</h3>
+    <a href="sign1.html" class="btn btn-success">Retourner</a>
+    <a href="request.html" class="btn btn-primary">Submit a Request</a>
+
+    <h2>Utilisateur</h2>
+    <div id="error" style="color: red;"></div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>code</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>GSM</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        <tbody id="user-table-body"></tbody>
+    </table>
+
+    <h2>Requests</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>code</th>
+            <th>Password</th>
+
+            <th>GSM</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        <tbody id="request-table-body"></tbody>
+    </table>
+</body>
+</html>

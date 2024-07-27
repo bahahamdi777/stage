@@ -1,0 +1,8 @@
+// Insertion dans la table user_requests
+                    $stmt = $pdo->prepare("INSERT INTO user_requests (email, phone, firstname, lastname, password) VALUES (:email, :phone, :firstname, :lastname, :password)");
+                    $stmt->bindParam(':email', $email);
+                    $stmt->bindParam(':phone', $phone);
+                    $stmt->bindParam(':firstname', $firstname);
+                    $stmt->bindParam(':lastname', $lastname);
+                    $stmt->bindParam(':password', $hashed_password);
+                    $stmt->execute();
